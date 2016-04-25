@@ -24,6 +24,6 @@
 	</style>
 	</head>
 	<body onload="showMemes()" bgcolor="black">
-	<video id="v" src="memes.gif" loop>
+	<video id="v" src="2Q==.jpg" loop>
 	</body>	
 </html>
