@@ -1,4 +1,29 @@
-cautious[octo-pancake]
-octo-[pancake cautious]
-pancake[cautious octo-]
-ayylmao.org
+<!doctype html>
+  <html height="100%">
+	<head>
+	<title>Dank Memes</title>
+	<script>
+	function showMemes()
+	{
+		document.getElementById("v").play();
+	}
+	</script>
+	
+	<style type="text/css">
+	html, body 
+	{
+		height: 100%;
+		overflow: hidden;
+	}
+	#v
+	{
+		text-align: center;
+		height: 100%;
+		width: 100%;
+	}
+	</style>
+	</head>
+	<body onload="showMemes()" bgcolor="black">
+	<video id="v" src="resources/memes.gif" loop>
+	</body>
+</html>
