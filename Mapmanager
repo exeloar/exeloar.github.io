@@ -1,0 +1,149 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+public class MapManager 
+{
+	public ArrayList<Map> maps = new ArrayList<Map>();
+	public int currentMap;
+	private int[] chMapLength;
+	public MapManager()
+	{
+		int x =0;
+		try 
+		{
+			Scanner input = new Scanner(new File("assets/info/mapinfo.txt"));
+			input.nextLine();//Chapter Map Lengths
+			chMapLength = new int[Integer.parseInt(input.nextLine().substring(15))];//# of Chapters: ##
+			while(input.hasNextLine())
+			{
+				chMapLength[x] = Integer.parseInt(input.nextLine().substring(12+(x/10)));//Chapter # = ## or Chapter ## = ##, etc.
+				x++;
+			}
+			input.close();
+		} 
+		catch (FileNotFoundException e) 
+		{e.printStackTrace();}
+	}
+	public void initializeMaps(int chapterNum)
+	{
+		for(int x =1;x<=chMapLength[chapterNum];x++)
+		{maps.add(new Map(chapterNum,x));}
+	}
+	public void setMap(int mapNum)
+	{currentMap = mapNum;}
+	public Map getMap()
+	{return maps.get(currentMap);}
+	public void clearMaps()
+	{maps.clear();}
+	public boolean onEdge(Map m, Sprite e)
+	{
+		
+		if(m.getXPos()==e.getXPos())
+		{e.setPos(e.getXPos()+e.getSpeed(), e.getYPos());return true;}
+		if(m.getXPos()+((m.getWidth()*32))==(e.getXPos()+e.getWidth()))
+		{e.setPos(e.getXPos()-e.getSpeed(), e.getYPos());return true;}
+		if(m.getYPos()==e.getYPos())
+		{e.setPos(e.getXPos(), e.getYPos()+e.getSpeed());return true;}
+		if((m.getYPos()+m.getHeight()*32)==(e.getYPos()+e.getHeight()))
+		{e.setPos(e.getXPos(), e.getYPos()-e.getSpeed());return true;}
+		return false;
+	} 
+	public  boolean onLeftExit(Map m, Sprite o)
+	{
+		return m.getExit(3).getxPos()==o.getXPos()&&
+			m.getExit(3).getyPos()<=o.getYPos()&&
+			(m.getExit(3).getyPos()+m.getExit(3).getHeight())>=(o.getYPos()+o.getHeight());
+	}
+	public  int onExit(Map m, Sprite o)
+	{
+		if(onRightExit(m,o))
+		{return 1;}
+		if(onTopExit(m,o))
+		{return 0;}
+		if(onLeftExit(m,o))
+		{return 3;}
+		if(onBottomExit(m,o))
+		{return 2;}
+		return -1;
+	}
+	public  boolean onRightExit(Map m, Sprite o)
+	{
+		return m.getExit(1).getxPos()==(o.getXPos()+o.getWidth())&&
+			(m.getExit(1).getyPos()<=o.getYPos()&&
+			(m.getExit(1).getyPos()+m.getExit(1).getHeight())>=(o.getYPos()+o.getHeight()));
+	}
+	public  boolean onTopExit(Map m, Sprite o)
+	{
+		return m.getExit(0).getyPos()==o.getYPos()&&
+			(m.getExit(0).getxPos()<=o.getXPos()&&
+			(m.getExit(0).getxPos()+m.getExit(0).getWidth())>=(o.getXPos()+o.getWidth()));
+	}
+	public  boolean onBottomExit(Map m, Sprite o)
+	{
+		return m.getExit(2).getyPos()==o.getYPos()+o.getHeight()&&
+			(m.getExit(2).getxPos()<=o.getXPos()&&
+			(m.getExit(2).getxPos()+m.getExit(2).getWidth())>=(o.getXPos()+o.getWidth()));
+	}
+	public  boolean inMap(Map m, Sprite o)
+	{
+		return m.getXPos()<=o.getXPos()&&
+			((m.getXPos()+m.getWidth()*32)>=(o.getXPos()+o.getWidth())&&
+			m.getYPos()<=o.getYPos()&&
+			(m.getYPos()+m.getHeight()*32)>=(o.getYPos()+o.getHeight()));
+	}
+	public  boolean collision(Map m, Sprite o)
+	{
+		System.out.println("player passes: " +o.getXPos()+" "+o.getYPos()+" "+o.getSpeed());
+		for(GameObject x:m.getObjects())
+		{
+			System.out.println("Objects are at: " +x.getXPos()+" "+x.getYPos()+" ");
+			if((x.getXPos()+x.getWidth())>=(o.getXPos())&&
+			(x.getXPos()<=o.getXPos()+o.getWidth())&&
+			x.getYPos()<=o.getYPos()+o.getHeight()&&
+			(x.getYPos()+x.getHeight())>=(o.getYPos()))
+			{
+				if(!x.getName().substring(0,4).equalsIgnoreCase("EXIT"))
+				{
+					System.out.println("Here at: " +x.getXPos()+" "+x.getYPos()+" ");
+					if(x.getXPos()>o.getXPos()&&x.getYPos()<o.getYPos()+o.getHeight()&&
+							(x.getYPos()+x.getHeight())>(o.getYPos()))
+					{
+						System.out.println("Move Left");
+						o.setPos(o.getXPos()-o.getSpeed(), o.getYPos());
+					}
+					//enter left
+					else if(((x.getXPos()+x.getWidth())<(o.getXPos())+o.getWidth()
+							&&(x.getYPos()<o.getYPos()+o.getHeight()&&
+							(x.getYPos()+x.getHeight())>(o.getYPos()))))
+					{
+						o.setPos(o.getXPos()+o.getSpeed(), o.getYPos());
+						System.out.println("Move Right");
+					}
+					//enter right
+					if(x.getYPos()>o.getYPos()
+							&&(x.getXPos()+x.getWidth())>(o.getXPos())&&
+							(x.getXPos()<o.getXPos()+o.getWidth()))
+					{
+						o.setPos(o.getXPos(), o.getYPos()-o.getSpeed());
+						System.out.println("Move Up");
+					}
+					//enter top
+					else if(x.getYPos()+x.getHeight()<o.getYPos()+o.getHeight()
+							&&(x.getXPos()+x.getWidth())>(o.getXPos())&&
+							(x.getXPos()<o.getXPos()+o.getWidth()))
+					{o.setPos(o.getXPos(), o.getYPos()+o.getSpeed());
+					System.out.println("Move Down");}
+					//enter bottom
+					System.out.println("player becomes: " +o.getXPos()+" "+o.getYPos()+" "+o.getSpeed());
+				}
+				return true;
+			}
+		}
+		return false;
+	}
+	public Enemy[] getEnemies() 
+	{
+		return maps.get(currentMap).getEnemies();
+	}
+}
