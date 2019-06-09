@@ -5,15 +5,16 @@
 		<title>Applet Test</title>
 	</head>
 	<body>
-		<script>
-			var attributes = {codebase: 'http://exeloar.github.io/applettest/TEAPIApplet/',
-				code: 'TEAPI.class',
-				archive: 'applet.jar',
-				width: '800', 
-				height: '600'};
-			var parameters = {java_arguments: '-Xmx256m'}; // customize per your needs
-			var version = '1.5'; // JDK version
-			deployJava.runApplet(attributes, parameters, version);
-		</script>
+		<applet codebase="http://exeloar.github.io/applettest/TEAPIApplet" code="TEAPI.class" height="600" width="800"></applet>
+		#<script>
+		#	var attributes = {codebase: 'http://exeloar.github.io/applettest/TEAPIApplet/',
+		#		code: 'TEAPI.class',
+		#		archive: 'applet.jar',
+		#		width: '800', 
+		#		height: '600'};
+		#	var parameters = {java_arguments: '-Xmx256m'}; // customize per your needs
+		#	var version = '1.5'; // JDK version
+		#	deployJava.runApplet(attributes, parameters, version);
+		#</script>
 	</body>	
 </html>
