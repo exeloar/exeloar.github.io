@@ -1,25 +1,22 @@
 <!doctype html>
   <html height="100%">
 	<head>
-		//<script src="//www.java.com/js/deployJava.js"></script>
 		<title>Applet Test</title>
 	</head>
 	<body>
-		<OBJECT 
-			classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
-			width="800" height="600">
-			<PARAM name="code" value="TEAPI.class">
+		<OBJECT classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+			WIDTH = 800 HEIGHT = 600 codebase="http://java.sun.com/products/plugin/1.3/jinstall-13-win32.cab#Version=1,3,0,0" NAME="SwingApplet">
+			<PARAM NAME = NAME VALUE = "TE API Tool" >
+			<PARAM NAME = CODE VALUE = "TEAPI.class" >
+			<PARAM NAME = CODEBASE VALUE = "classes" >
+			<PARAM NAME = ARCHIVE VALUE = "applet.jar" >
+			<PARAM NAME=TYPE VALUE="application/x-java-applet;version=1.3">
+			<PARAM NAME="scriptable" VALUE="false">
+			<COMMENT>
+			<EMBED type="application/x-java-applet;version=1.3" NAME="TE API Tool" CODE = "TEAPI.class" CODEBASE = "classes" ARCHIVE = "applet.jar" WIDTH = 800 HEIGHT = 600 type = "application/x-java-applet;version=1.3" scriptable=false pluginspage="http://java.sun.com/products/plugin/1.3/plugin-install.html">
+			<NOEMBED>
+			</COMMENT>
+			</NOEMBED></EMBED>
 		</OBJECT>
-		//<applet codebase="http://exeloar.github.io/applettest/TEAPIApplet/" code="TEAPI.class" height="600" width="800"></applet>
-		//<script>
-		//	var attributes = {codebase: 'http://exeloar.github.io/applettest/TEAPIApplet/',
-		//		code: 'TEAPI.class',
-		//		archive: 'applet.jar',
-		//		width: '800', 
-		//		height: '600'};
-		//	var parameters = {java_arguments: '-Xmx256m'}; // customize per your needs
-		//	var version = '1.5'; // JDK version
-		//	deployJava.runApplet(attributes, parameters, version);
-		//</script>
 	</body>	
 </html>
