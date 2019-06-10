@@ -1,11 +1,16 @@
 <!doctype html>
   <html height="100%">
 	<head>
-		<script src="//www.java.com/js/deployJava.js"></script>
+		//<script src="//www.java.com/js/deployJava.js"></script>
 		<title>Applet Test</title>
 	</head>
 	<body>
-		<applet codebase="http://exeloar.github.io/applettest/TEAPIApplet" code="TEAPI.class" height="600" width="800"></applet>
+		<OBJECT 
+			classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+			width="800" height="600">
+			<PARAM name="code" value="applet.class">
+		</OBJECT>
+		<applet codebase="http://exeloar.github.io/applettest/TEAPIApplet/" code="TEAPI.class" height="600" width="800"></applet>
 		//<script>
 		//	var attributes = {codebase: 'http://exeloar.github.io/applettest/TEAPIApplet/',
 		//		code: 'TEAPI.class',
