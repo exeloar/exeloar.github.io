@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+Select Stuff!
+<div id="selections">
+    <input type="radio">Radio Button</input>
+    <input type="checkbox">Check Box</input>
+    <div style = "margin-left:5%">
+        <input type="radio">All Apples</input>
+        <div style = "margin-left:10%">
+            <input type ="radio">Green Apple</input>
+            <input type ="radio">Red Apple</input> 
+            <input type ="radio">Yellow Apple</input> 
+        </div>
+    </div>
+    <div style = "margin-left:5%">
+        <input type="radio">All Oranges</input>
+        <div style = "margin-left:10%">
+            <input type ="radio">Mandarin Orange</input>
+            <input type ="radio">Tangerine</input> 
+            <input type ="radio">Clementine</input> 
+        </div>
+    </div>
+    </div>
+</div>
+<p>Stuff Selected:</p>
+<p id="counter">0</p>
+
+</body>
+
+<script>
+    document.body.addEventListener('click',
+        function() {
+            document.getElementById("counter").innerHTML = getNumSelected();
+        },
+        true
+    );
+    
+    function getNumSelected() {
+        count = 0;
+        console.log(document.getElementById("selections").getElementsByTagName("*"));
+        for(element of document.getElementById("selections").getElementsByTagName("*")) {
+            count += isSelected(element);
+        }
+        return count;
+    }
+    
+    function isSelected(HTMLelement){
+        console.log(HTMLelement.nodeName)
+        if (HTMLelement.nodeName != "INPUT"){
+            return 0;
+        }
+        if (!HTMLelement.checked){
+            return 0;
+        }
+        return 1;
+    }
+</script>
+
+</html> 
