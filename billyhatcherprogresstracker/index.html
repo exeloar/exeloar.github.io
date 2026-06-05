@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billy Hatcher Progress Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-top">
+      <h1>Billy Hatcher &amp; the Giant Egg — Progress Tracker</h1>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div class="overall-progress">
+          <span>Overall</span>
+          <div class="overall-bar-wrap"><div id="overall-bar" style="width:0%"></div></div>
+          <span id="overall-pct">0%</span>
+        </div>
+        <button class="reset-btn" onclick="resetProgress()">Reset</button>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="stat">
+        <span class="stat-label">Courage Emblems</span>
+        <div class="stat-row">
+          <span class="stat-value" id="stat-emblems">0</span>
+          <span class="stat-max">/60</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="bar-emblems" style="width:0%"></div></div>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Levels Complete</span>
+        <div class="stat-row">
+          <span class="stat-value" id="stat-levels">0</span>
+          <span class="stat-max">/56</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="bar-levels" style="width:0%"></div></div>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Chick Coins</span>
+        <div class="stat-row">
+          <span class="stat-value" id="stat-coins">0</span>
+          <span class="stat-max">/280</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="bar-coins" style="width:0%"></div></div>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Eggs Hatched</span>
+        <div class="stat-row">
+          <span class="stat-value" id="stat-eggs">0</span>
+          <span class="stat-max">/72</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="bar-eggs" style="width:0%"></div></div>
+      </div>
+      <div class="stat">
+        <span class="stat-label">S Ranks</span>
+        <div class="stat-row">
+          <span class="stat-value" id="stat-sranks">0</span>
+          <span class="stat-max">/56</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="bar-sranks" style="width:0%"></div></div>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <button class="tab-btn active" data-tab="level-select">Level Select</button>
+    <button class="tab-btn" data-tab="egg-gallery">Egg Gallery</button>
+  </nav>
+
+  <main>
+
+    <!-- Level Select Tab -->
+    <div id="level-select" class="tab-content active">
+      <div id="world-buttons"></div>
+      <div id="mission-buttons"></div>
+      <div id="level-detail">
+        <p class="placeholder">Select a level above to view its details</p>
+      </div>
+    </div>
+
+    <!-- Egg Gallery Tab -->
+    <div id="egg-gallery" class="tab-content">
+      <div id="egg-left">
+        <div id="egg-zero-row"></div>
+        <div id="egg-grid"></div>
+      </div>
+      <div id="egg-detail">
+        <p class="placeholder" style="font-size:0.82rem;color:var(--text-dim);">Select an egg to view details</p>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
