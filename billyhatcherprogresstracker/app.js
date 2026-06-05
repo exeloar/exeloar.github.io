@@ -653,7 +653,7 @@ function renderEggDetail() {
   const locations = GAME_DATA.EGG_LOCATIONS[eggId];
   if (locations.length > 0) {
     const locTitle = document.createElement('h3');
-    locTitle.textContent = 'Found in Levels';
+    locTitle.textContent = locations.length === 1 ? 'Found in Level' : 'Found in Levels';
     panel.appendChild(locTitle);
 
     const locList = document.createElement('ul');
