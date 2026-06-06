@@ -518,6 +518,15 @@ main { flex: 1; padding: 16px 20px; }
 .egg-card.hatched { opacity: 1; border-color: var(--gold); background: #2a2200; }
 .egg-card.selected{ border-color: var(--gold) !important; box-shadow: 0 0 0 2px var(--gold); opacity: 1; }
 
+.egg-lock {
+  position: absolute;
+  top: 1px;
+  right: 2px;
+  font-size: 0.65rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
 /* Egg Detail Panel */
 #egg-detail {
   background: var(--bg2);
@@ -729,6 +738,56 @@ main { flex: 1; padding: 16px 20px; }
 .coin-req-met {
   border-color: var(--green);
   color: #6aaa6a;
+}
+
+/* ─────────────────────────────────────────────
+   Mobile Responsive
+   ───────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  html { font-size: 14px; }
+
+  header { padding: 10px 12px; }
+
+  .header-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  header h1 { font-size: 1rem; }
+
+  .overall-bar-wrap { width: 80px; }
+
+  .stats-bar { gap: 6px; }
+
+  .stat { min-width: calc(50% - 3px); flex: none; }
+
+  nav { padding: 0 8px; }
+
+  .tab-btn { padding: 10px 14px; }
+
+  main { padding: 12px; }
+
+  #egg-gallery.active {
+    flex-direction: column;
+  }
+
+  #egg-detail {
+    position: static;
+    width: 100%;
+  }
+
+  #egg-grid { grid-template-columns: repeat(6, 1fr); }
+
+  .level-controls { gap: 8px; }
+
+  .coin-btn { width: 56px; height: 56px; }
+  .coin-btn img { width: 28px; height: 28px; }
+
+  .level-detail-cols {
+    flex-direction: column;
+  }
 }
 
 /* ─────────────────────────────────────────────

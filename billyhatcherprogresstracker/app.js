@@ -416,6 +416,15 @@ function renderLevelDetail() {
         card.appendChild(ck);
       }
 
+      const coinReq = GAME_DATA.EGG_COIN_REQUIREMENTS[eggId];
+      if (coinReq !== undefined && gs.chickCoins < coinReq) {
+        const lock = document.createElement('div');
+        lock.className = 'egg-lock';
+        lock.textContent = '🔒';
+        lock.title = `Requires ${coinReq} chick coins`;
+        card.appendChild(lock);
+      }
+
       const name = document.createElement('span');
       name.textContent = GAME_DATA.EGG_NAMES[eggId];
       card.appendChild(name);
@@ -542,6 +551,15 @@ function renderEggGallery() {
       ck.className = 'hatched-mark';
       ck.textContent = '✓';
       card.appendChild(ck);
+    }
+
+    const coinReq = GAME_DATA.EGG_COIN_REQUIREMENTS[i];
+    if (coinReq !== undefined && gs.chickCoins < coinReq) {
+      const lock = document.createElement('div');
+      lock.className = 'egg-lock';
+      lock.textContent = '🔒';
+      lock.title = `Requires ${coinReq} chick coins`;
+      card.appendChild(lock);
     }
 
     card.onclick = () => { selectedEgg = i; renderEggDetail(); renderEggGallery(); };
